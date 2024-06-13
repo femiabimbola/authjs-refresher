@@ -17,6 +17,8 @@ interface ModalProps {
 
 const AuthModal = ({isOpen}: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
+  useEffect(() => setShowModal(isOpen), [isOpen]);
+  if (!showModal) return null;
 
   return (
     <div

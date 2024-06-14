@@ -1,7 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    // registerModal: registerModalReducer,
+    // loginModal: loginModalReducer
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

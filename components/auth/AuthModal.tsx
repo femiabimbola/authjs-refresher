@@ -15,17 +15,26 @@ interface ModalProps {
   secondaryActionLabel?: string;
 }
 
-const AuthModal = ({isOpen}: ModalProps) => {
+const AuthModal = ({isOpen, disabled, onClose}: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
+
   useEffect(() => setShowModal(isOpen), [isOpen]);
   if (!showModal) return null;
+
+  const handleClose = useCallback(() => {
+    if (disabled) return;
+    setShowModal(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [disabled, onClose]);
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
-      // onClick={handleClose}
+      onClick={handleClose}
     >
-      <div></div>
+      <div> Just wanna check</div>
     </div>
   );
 };

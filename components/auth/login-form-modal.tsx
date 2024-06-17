@@ -1,8 +1,10 @@
+"use client";
+
 import AuthModal from "./AuthModal";
 import {useAppDispatch, useLoginModal} from "@/lib/redux/hooks";
 import {onClose} from "@/lib/redux/features/login-slice";
 
-const loginModal = () => {
+const LoginModal = () => {
   const [isOpen, isLoading] = useLoginModal();
   const dispatch = useAppDispatch();
 
@@ -15,4 +17,4 @@ const loginModal = () => {
   );
 };
 
-export default loginModal;
+export default LoginModal;

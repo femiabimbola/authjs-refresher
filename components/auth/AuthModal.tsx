@@ -4,11 +4,11 @@ import {useCallback, useEffect, useState} from "react";
 interface ModalProps {
   isOpen?: boolean;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit?: () => void; // not temporary
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: string;
+  actionLabel?: string; // not undefined
   actionColor?: string;
   disabled?: boolean;
   secondaryAction?: () => void;

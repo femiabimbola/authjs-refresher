@@ -19,7 +19,6 @@ const AuthModal = ({isOpen, disabled, onClose}: ModalProps) => {
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => setShowModal(isOpen), [isOpen]);
-  if (!showModal) return null;
 
   const handleClose = useCallback(() => {
     if (disabled) return;
@@ -29,12 +28,18 @@ const AuthModal = ({isOpen, disabled, onClose}: ModalProps) => {
     }, 300);
   }, [disabled, onClose]);
 
+  if (!showModal) return null;
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
       onClick={handleClose}
     >
-      <div> Just wanna check if you open</div>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full mx-auto my-6 sm:w-[480px] lg:h-auto md:h-auto"
+      >
+        Just wanna check if you open
+      </div>
     </div>
   );
 };

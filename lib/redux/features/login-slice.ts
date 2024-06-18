@@ -11,7 +11,7 @@ const initialState: LoginModalState = {
 };
 
 export const loginSlice = createSlice({
-  name: "registerModal",
+  name: "loginModal",
   initialState,
   reducers: {
     onOpen: (state) => {

@@ -34,7 +34,7 @@ const AuthModal = ({isOpen, disabled, onClose}: ModalProps) => {
       className="fixed inset-0 z-50 flex items-center justify-center px-6 overflow-x-hidden overflow-y-auto outline-none overlay focus:outline-none bg-black/50"
       onClick={handleClose}
     >
-      <div> Just wanna check</div>
+      <div> Just wanna check if you open</div>
     </div>
   );
 };

@@ -2,18 +2,21 @@
 
 import AuthModal from "./AuthModal";
 import {useAppDispatch, useLoginModal} from "@/lib/redux/hooks";
-import {onClose} from "@/lib/redux/features/login-slice";
+import {onClose as onLoginClose} from "@/lib/redux/features/login-slice";
 
 const LoginModal = () => {
   const [isOpen, isLoading] = useLoginModal();
   const dispatch = useAppDispatch();
 
+  // This component is called on load, but onClose props closes it
   return (
-    <AuthModal
-      onClose={() => dispatch(onClose())}
-      isOpen={isOpen}
-      // disabled={}
-    />
+    <>
+      <AuthModal
+        onClose={() => dispatch(onLoginClose())}
+        isOpen={isOpen}
+        // disabled={}
+      />
+    </>
   );
 };
 

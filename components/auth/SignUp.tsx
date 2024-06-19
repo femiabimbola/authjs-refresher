@@ -1,3 +1,5 @@
+"use client";
+
 const SignUp = () => {
   return <div> The Signup Component</div>;
 };

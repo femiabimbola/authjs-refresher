@@ -2,6 +2,7 @@
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {RegisterSchema} from "@/lib/schemas";
+import {MailIcon} from "lucide-react";
 import {z} from "zod";
 import {Button} from "@/components/ui/button";
 import {
@@ -14,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
+import {InputSuffix} from "../ui/input-suffix";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -58,8 +60,9 @@ const SignUp = () => {
             <FormItem>
               <FormLabel>Enter your email</FormLabel>
               <FormControl>
-                <Input
+                <InputSuffix
                   placeholder="hello@mail.com"
+                  suffix={<MailIcon />}
                   {...field}
                 />
               </FormControl>

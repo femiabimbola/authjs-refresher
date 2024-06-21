@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {InputSuffix} from "../ui/input-suffix";
+import {PasswordInput} from "../ui/password-input";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -77,8 +78,8 @@ const SignUp = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="*****"
+                <PasswordInput
+                  placeholder="enter password"
                   {...field}
                 />
               </FormControl>

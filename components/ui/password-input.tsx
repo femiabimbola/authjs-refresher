@@ -2,7 +2,8 @@ import * as React from "react";
 
 import {cn} from "@/lib/utils";
 import {Input} from "./input";
-import {EyeIcon} from "lucide-react";
+import {EyeIcon, EyeOffIcon} from "lucide-react";
+import {InputSuffix} from "./input-suffix";
 
 export interface PasswordInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,15 +11,18 @@ export interface PasswordInputProps
 }
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({suffix, className, ...props}, ref) => {
+  ({className, ...props}, ref) => {
+    const [showPassword, setShowPassword] = React.useState(false);
     return (
-      <div>
-        suffix={<EyeIcon />}
-        <Input
+      <div className=" flex gap-1 items-center">
+        <InputSuffix
           className={className}
           {...props}
           ref={ref}
+          type={showPassword ? "text" : "password"}
+          suffix={showPassword ? <EyeIcon /> : <EyeOffIcon />}
         />
+        {/* {suffix={<EyeIcon />}} */}
       </div>
     );
   }

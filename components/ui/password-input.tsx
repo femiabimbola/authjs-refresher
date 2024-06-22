@@ -11,18 +11,28 @@ export interface PasswordInputProps
 }
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({className, ...props}, ref) => {
+  ({suffix, className, ...props}, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
     return (
       <div className=" flex gap-1 items-center">
-        <InputSuffix
+        <Input
           className={className}
           {...props}
           ref={ref}
           type={showPassword ? "text" : "password"}
-          suffix={showPassword ? <EyeIcon /> : <EyeOffIcon />}
         />
-        {/* {suffix={<EyeIcon />}} */}
+
+        {showPassword ? (
+          <EyeIcon
+            className="select-none"
+            onClick={() => setShowPassword(false)}
+          />
+        ) : (
+          <EyeOffIcon
+            className="select-none"
+            onClick={() => setShowPassword(true)}
+          />
+        )}
       </div>
     );
   }

@@ -29,7 +29,6 @@ const SignUp = () => {
   });
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    console.log("here");
     console.log(values);
   };
   return (

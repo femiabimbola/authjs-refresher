@@ -17,6 +17,7 @@ import {
 import {Input} from "@/components/ui/input";
 import {InputSuffix} from "../ui/input-suffix";
 import {PasswordInput} from "../ui/password-input";
+import CardWrapper from "../shared/CardWrapper";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -32,63 +33,65 @@ const SignUp = () => {
     console.log(values);
   };
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8"
-      >
-        <FormField
-          control={form.control}
-          name="username"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Enter your email</FormLabel>
-              <FormControl>
-                <InputSuffix
-                  placeholder="hello@mail.com"
-                  suffix={<MailIcon />}
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({field}) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput
-                  placeholder="enter password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+    <CardWrapper title={"Sign up"}>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8"
+        >
+          <FormField
+            control={form.control}
+            name="username"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="shadcn"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Enter your email</FormLabel>
+                <FormControl>
+                  <InputSuffix
+                    placeholder="hello@mail.com"
+                    suffix={<MailIcon />}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <PasswordInput
+                    placeholder="enter password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </CardWrapper>
   );
 };
 

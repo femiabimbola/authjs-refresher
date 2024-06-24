@@ -9,14 +9,16 @@ import {
 
 interface CardWrapperProps {
   children: React.ReactNode;
+  title: String;
+  secondText?: String;
 }
 
-const CardWrapper = ({children}: CardWrapperProps) => {
+const CardWrapper = ({children, title, secondText}: CardWrapperProps) => {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[400px]">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{secondText}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>

@@ -31,8 +31,10 @@ const SignUp = () => {
   });
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    console.log(values);
-    axios.post("/api/register").then((response) => console.log(response));
+    // console.log(values);
+    axios
+      .post("/api/register", values)
+      .then((response) => console.log(response));
   };
   return (
     <CardWrapper title={"Sign up"}>

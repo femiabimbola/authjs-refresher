@@ -18,6 +18,7 @@ import {Input} from "@/components/ui/input";
 import {InputSuffix} from "../ui/input-suffix";
 import {PasswordInput} from "../ui/password-input";
 import CardWrapper from "../shared/CardWrapper";
+import axios from "axios";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -31,6 +32,7 @@ const SignUp = () => {
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     console.log(values);
+    axios.post("/api/register").then((response) => console.log(response));
   };
   return (
     <CardWrapper title={"Sign up"}>

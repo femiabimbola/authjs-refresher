@@ -17,7 +17,7 @@ const CardWrapper = ({children, title, secondText}: CardWrapperProps) => {
   return (
     <Card className="w-[400px]">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-center">{title}</CardTitle>
         <CardDescription>{secondText}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>

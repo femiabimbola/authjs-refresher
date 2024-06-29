@@ -18,6 +18,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {Separator} from "@/components/ui/separator";
+
 const Login = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -76,6 +78,7 @@ const Login = () => {
           </Button>
         </form>
       </Form>
+      <Separator />
     </CardWrapper>
   );
 };

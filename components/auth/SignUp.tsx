@@ -37,7 +37,11 @@ const SignUp = () => {
       .then((response) => console.log(response));
   };
   return (
-    <CardWrapper title={"Sign up"}>
+    <CardWrapper
+      title={"Sign up"}
+      footerLabel={"Have an account, Sign in"}
+      href={"/login"}
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

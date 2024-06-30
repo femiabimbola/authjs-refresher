@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {Separator} from "@/components/ui/separator";
+import Social from "@/components/auth/social";
 
 const Login = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -31,11 +32,15 @@ const Login = () => {
 
   const onSubmit = () => {};
   return (
-    <CardWrapper title="Login">
+    <CardWrapper
+      title="Login"
+      footerLabel={"Don't have an account, Sign up"}
+      href={"/signup"}
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8"
+          className="space-y-4"
         >
           <FormField
             control={form.control}
@@ -79,6 +84,7 @@ const Login = () => {
         </form>
       </Form>
       <Separator />
+      <Social />
     </CardWrapper>
   );
 };

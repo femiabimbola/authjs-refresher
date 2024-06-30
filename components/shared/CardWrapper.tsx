@@ -6,14 +6,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 interface CardWrapperProps {
   children: React.ReactNode;
   title: String;
   secondText?: String;
+  href: String;
+  footerLabel: String;
 }
 
-const CardWrapper = ({children, title, secondText}: CardWrapperProps) => {
+const CardWrapper = ({
+  children,
+  title,
+  secondText,
+  href,
+  footerLabel,
+}: CardWrapperProps) => {
   return (
     <Card className="w-[400px]">
       <CardHeader>
@@ -21,6 +30,9 @@ const CardWrapper = ({children, title, secondText}: CardWrapperProps) => {
         <CardDescription>{secondText}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
+      <CardFooter className="flex justify-center">
+        <Link href={href}> {footerLabel}</Link>
+      </CardFooter>
     </Card>
   );
 };

@@ -18,7 +18,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Separator} from "@/components/ui/separator";
+
+import WordSeparator from "../shared/separator";
 import Social from "@/components/auth/social";
 
 const Login = () => {
@@ -35,7 +36,7 @@ const Login = () => {
     <CardWrapper
       title="Login"
       footerLabel={"Don't have an account, Sign up"}
-      href={"/signup"}
+      footerLink={"/signup"}
     >
       <Form {...form}>
         <form
@@ -83,7 +84,7 @@ const Login = () => {
           </Button>
         </form>
       </Form>
-      <Separator />
+      <WordSeparator word="Or sign in with" />
       <Social />
     </CardWrapper>
   );

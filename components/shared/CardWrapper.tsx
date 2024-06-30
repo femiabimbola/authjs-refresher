@@ -6,22 +6,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
+import {Url} from "url";
+import BackButton from "@/components/shared/BackButton";
 
 interface CardWrapperProps {
   children: React.ReactNode;
   title: String;
   secondText?: String;
-  href: String;
-  footerLabel: String;
+  footerLabel: string;
+  footerLink: string;
 }
 
 const CardWrapper = ({
   children,
   title,
   secondText,
-  href,
   footerLabel,
+  footerLink,
 }: CardWrapperProps) => {
   return (
     <Card className="w-[400px]">
@@ -31,7 +32,10 @@ const CardWrapper = ({
       </CardHeader>
       <CardContent>{children}</CardContent>
       <CardFooter className="flex justify-center">
-        <Link href={href}> {footerLabel}</Link>
+        <BackButton
+          footerLabel={footerLabel}
+          footerLink={footerLink}
+        />
       </CardFooter>
     </Card>
   );

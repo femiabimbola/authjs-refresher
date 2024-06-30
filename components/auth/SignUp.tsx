@@ -19,6 +19,9 @@ import {InputSuffix} from "../ui/input-suffix";
 import {PasswordInput} from "../ui/password-input";
 import CardWrapper from "../shared/CardWrapper";
 import axios from "axios";
+import {Separator} from "@/components/ui/separator";
+import Social from "@/components/auth/social";
+import WordSeparator from "../shared/separator";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -39,13 +42,13 @@ const SignUp = () => {
   return (
     <CardWrapper
       title={"Sign up"}
-      footerLabel={"Have an account, Sign in"}
-      href={"/login"}
+      footerLabel={"Have an account? Sign In"}
+      footerLink={"/login"}
     >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8"
+          className="space-y-3"
         >
           <FormField
             control={form.control}
@@ -104,6 +107,8 @@ const SignUp = () => {
           </Button>
         </form>
       </Form>
+      <WordSeparator word="Or sign up with" />
+      <Social />
     </CardWrapper>
   );
 };

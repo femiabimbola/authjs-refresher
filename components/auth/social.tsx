@@ -1,15 +1,22 @@
 import {Button} from "@/components/ui/button";
-import {FaGoogle} from "react-icons/fa";
 import {FaTwitter} from "react-icons/fa";
+import {FcGoogle} from "react-icons/fc";
 
 const Social = () => {
   return (
-    <div className="flex gap-x-2">
-      <Button onClick={() => {}}>
-        <FaGoogle className="h-5 w-5" />
+    <div className="flex items-center gap-x-2 w-full mt-4">
+      <Button
+        onClick={() => {}}
+        variant={"outline"}
+        className="w-full"
+      >
+        <FcGoogle className="h-7 w-7" />
       </Button>
-      <Button>
-        <FaTwitter className="h-5 w-5" />
+      <Button
+        variant={"outline"}
+        className="w-full"
+      >
+        <FaTwitter className="h-6 w-6" />
       </Button>
     </div>
   );

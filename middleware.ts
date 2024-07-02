@@ -2,4 +2,7 @@
 //a database adapter that isn’t explicitly “edge compatible
 // PostgreSQL queries will not work in middleware, its uses tcp
 
-export {auth as middleware} from "@/auth";
+import NextAuth from "next-auth";
+import authConfig from "./auth.config";
+
+export const {auth: middleware} = NextAuth(authConfig);

@@ -18,6 +18,7 @@ export default {
     Credentials({
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);
+        console.log(validatedFields);
       },
     }),
   ],

@@ -1,13 +1,13 @@
 "use client";
 
 import {Button} from "@/components/ui/button";
-import {FaTwitter} from "react-icons/fa";
+import {FaDiscord} from "react-icons/fa";
 import {FcGoogle} from "react-icons/fc";
 // import {signIn} from "@/auth";
 import {signIn} from "next-auth/react"; //For client component
 
 const Social = () => {
-  const onClick = async (provider: "twitter" | "google") => {
+  const onClick = async (provider: "discord" | "google") => {
     await signIn(provider);
   };
   return (
@@ -20,11 +20,11 @@ const Social = () => {
         <FcGoogle className="h-7 w-7" />
       </Button>
       <Button
-        onClick={() => onClick("twitter")}
+        onClick={() => onClick("discord")}
         variant={"outline"}
         className="w-full"
       >
-        <FaTwitter className="h-6 w-6" />
+        <FaDiscord className="h-6 w-6" />
       </Button>
     </div>
   );

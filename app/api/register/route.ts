@@ -35,7 +35,6 @@ export const POST = async (req: Request) => {
       data: {username: username, email: email, password: hashedPassword},
     });
 
-    //  To remove
     const {password: newUserPassword, ...rest} = newUser;
 
     return NextResponse.json(

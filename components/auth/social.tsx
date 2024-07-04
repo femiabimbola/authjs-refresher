@@ -8,7 +8,7 @@ import {signIn} from "next-auth/react"; //For client component
 
 const Social = () => {
   const onClick = async (provider: "discord" | "google") => {
-    await signIn(provider);
+    await signIn(provider, {redirectTo: "/dashboard"});
   };
   return (
     <div className="flex items-center gap-x-2 w-full mt-4">

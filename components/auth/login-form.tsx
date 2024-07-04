@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {z} from "zod";
 import CardWrapper from "../shared/CardWrapper";
 import {LoginSchema} from "@/lib/schemas";
+import axios from "axios";
 import {Button} from "@/components/ui/button";
 import {InputSuffix} from "../ui/input-suffix";
 import {PasswordInput} from "../ui/password-input";
@@ -31,7 +32,10 @@ const Login = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    console.log(values);
+    axios.post("/api/login", values).then((response) => console.log(response));
+  };
 
   return (
     <CardWrapper

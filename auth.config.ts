@@ -3,7 +3,8 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import Discord from "next-auth/providers/discord";
 import {LoginSchema} from "@/lib/schemas";
-import {compare} from "bcrypt";
+import bcrypt from "bcryptjs";
+import {getUserByEmail} from "@/data/user";
 
 // Notice this is only an object, not a full Auth.js instance
 export default {
@@ -28,7 +29,7 @@ export default {
 
           if (!user || !user.password) return null;
 
-          const passwordsMatch = await compare(password, user.password);
+          const passwordsMatch = await bcrypt.compare(password, user.password);
           if (passwordsMatch) return user;
         }
         return null;

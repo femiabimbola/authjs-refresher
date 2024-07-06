@@ -30,7 +30,7 @@ export const POST = async (request: Request) => {
     return NextResponse.json({success: "Sign in successfully"}, {status: 200});
   } catch (error) {
     return NextResponse.json(
-      {error: "something went wrong again 2"},
+      {error: "something went wrong again 2 2"},
       {status: 400}
     );
   }

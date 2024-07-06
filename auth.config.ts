@@ -21,18 +21,17 @@ export default {
       authorize: async (credentials) => {
         const validatedFields = LoginSchema.safeParse(credentials);
 
-        if (!validatedFields.success) return null;
+        if (!validatedFields.success) throw new Error("Wrong data input");
 
         const {email, password} = validatedFields.data;
 
         const user = await getUserByEmail(email);
 
-        if (!user || !user.password) return null;
+        if (!user || !user.password) throw new Error("User not found.");
 
         const passwordsMatch = await bcrypt.compare(password, user.password);
 
-        if (!passwordsMatch) return null;
-
+        if (!passwordsMatch) throw new Error("Password no match o");
         return user;
       },
     }),

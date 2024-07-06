@@ -1,13 +1,29 @@
 import {LoginSchema} from "@/lib/schemas";
 import {NextResponse} from "next/server";
+import {getUserByEmail} from "@/data/user";
+import {signIn} from "@/auth";
 
 export const POST = async (request: Request) => {
-  try {
-    const body = await request.json();
-    const {email, password} = LoginSchema.parse(body);
-    console.log(email, password);
-    return NextResponse.json({message: "Thank you, I'm here"}, {status: 200});
-  } catch (error) {
-    return NextResponse.json({message: "something went wrong"}, {status: 500});
+  const body = await request.json();
+  // const {email, password} = LoginSchema.parse(body);
+  const validatedFields = LoginSchema.safeParse(body);
+  if (!validatedFields.success)
+    return NextResponse.json({error: "Invalid Field"}, {status: 401});
+  const {email, password} = validatedFields.data;
+  const existingUser = await getUserByEmail(email);
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return NextResponse.json(
+      {error: "Email or User does not exist"},
+      {status: 200}
+    );
   }
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+    });
+  } catch (error) {}
+
+  return NextResponse.json({message: "Thank you, I'm here"}, {status: 200});
 };

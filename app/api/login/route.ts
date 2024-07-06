@@ -10,20 +10,28 @@ export const POST = async (request: Request) => {
   if (!validatedFields.success)
     return NextResponse.json({error: "Invalid Field"}, {status: 401});
   const {email, password} = validatedFields.data;
+
   const existingUser = await getUserByEmail(email);
+
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return NextResponse.json(
       {error: "Email or User does not exist"},
-      {status: 200}
+      {status: 400}
     );
   }
+
   try {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      // redirectTo: "/client",
     });
-  } catch (error) {}
-
-  return NextResponse.json({message: "Thank you, I'm here"}, {status: 200});
+    console.log("are you here 2");
+    return NextResponse.json({success: "Sign in successfully"}, {status: 200});
+  } catch (error) {
+    return NextResponse.json(
+      {error: "something went wrong again 2"},
+      {status: 400}
+    );
+  }
 };

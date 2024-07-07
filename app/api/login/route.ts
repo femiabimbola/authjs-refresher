@@ -24,13 +24,13 @@ export const POST = async (request: Request) => {
     await signIn("credentials", {
       email,
       password,
-      // redirectTo: "/client",
+      redirectTo: "/client",
     });
     console.log("are you here 2");
     return NextResponse.json({success: "Sign in successfully"}, {status: 200});
   } catch (error) {
     return NextResponse.json(
-      {error: "something went wrong again 2 2"},
+      {error: "something went wrong again 2"},
       {status: 400}
     );
   }

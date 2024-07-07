@@ -9,11 +9,26 @@ const prisma = new PrismaClient();
 
 export const {handlers, signIn, signOut, auth} = NextAuth({
   pages: {
-    signIn: "/auth/login",
-    error: "/auth/error",
+    signIn: "/login",
   },
-  session: {strategy: "jwt"},
+
+  callbacks: {
+    async signIn({user, account, profile}: any) {
+      return true;
+    },
+    async jwt({token}) {
+      if (!token.sub) return token;
+      console.log("jwt");
+      return token;
+    },
+    async session({token, session}: any) {
+      console.log("FINALLY");
+      session.user.id = token.id;
+      return session;
+    },
+  },
   // adapter: PrismaAdapter(prisma),
   adapter: PrismaAdapter(db),
+  session: {strategy: "jwt"},
   ...authConfig,
 });

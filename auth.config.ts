@@ -20,7 +20,6 @@ export default {
     Credentials({
       authorize: async (credentials) => {
         const validatedFields = LoginSchema.safeParse(credentials);
-
         if (!validatedFields.success) throw new Error("Wrong data input");
 
         const {email, password} = validatedFields.data;
@@ -30,7 +29,6 @@ export default {
         if (!user || !user.password) throw new Error("User not found.");
 
         const passwordsMatch = await bcrypt.compare(password, user.password);
-
         if (!passwordsMatch) throw new Error("Password no match o");
         return user;
       },

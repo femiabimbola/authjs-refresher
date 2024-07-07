@@ -22,13 +22,23 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
       return token;
     },
     async session({token, session}: any) {
-      console.log("FINALLY");
+      console.log("bro");
       session.user.id = token.id;
-      return session;
+      return token;
     },
   },
   // adapter: PrismaAdapter(prisma),
-  adapter: PrismaAdapter(db),
+  events: {
+    // for email verifing for oAuth sign in
+    async linkAccount({user}) {
+      console.log("evebt");
+      await db.user.update({
+        where: {id: user.id},
+        data: {emailVerified: new Date()},
+      });
+    },
+  },
   session: {strategy: "jwt"},
+  adapter: PrismaAdapter(db),
   ...authConfig,
 });

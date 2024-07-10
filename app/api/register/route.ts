@@ -7,18 +7,20 @@ export const POST = async (req: Request) => {
   try {
     const body = await req.json();
     const {email, username, password} = RegisterSchema.parse(body);
-    console.log(email, username, password);
 
+    
     //  Finding user by email
     const existingUserByEmail = await db.user.findUnique({
       where: {email: email},
     });
+
     if (existingUserByEmail)
       return NextResponse.json(
         {user: null, message: "user already exist"},
         {status: 409}
       );
-
+      
+      
     // Find user
     const existingUserByUsername = await db.user.findUnique({
       where: {email: email},
@@ -28,6 +30,8 @@ export const POST = async (req: Request) => {
         {user: null, message: "username not available"},
         {status: 409}
       );
+
+    
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -12,32 +12,33 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
     signIn: "/login",
   },
 
+
   callbacks: {
     async signIn({user, account, profile}: any) {
       return true;
     },
     async jwt({token}) {
       if (!token.sub) return token;
-      console.log("jwt");
       return token;
     },
     async session({token, session}: any) {
-      console.log("bro");
+      console.log("hi")
       session.user.id = token.id;
+      
       return token;
     },
   },
   // adapter: PrismaAdapter(prisma),
-  events: {
-    // for email verifing for oAuth sign in
-    async linkAccount({user}) {
-      console.log("evebt");
-      await db.user.update({
-        where: {id: user.id},
-        data: {emailVerified: new Date()},
-      });
-    },
-  },
+  // events: {
+  //   // for email verifing for oAuth sign in
+  //   async linkAccount({user}) {
+  //     console.log("evebt");
+  //     await db.user.update({
+  //       where: {id: user.id},
+  //       data: {emailVerified: new Date()},
+  //     });
+  //   },
+  // },
   session: {strategy: "jwt"},
   adapter: PrismaAdapter(db),
   ...authConfig,

@@ -5,10 +5,11 @@ import {signIn} from "@/auth";
 
 export const POST = async (request: Request) => {
   const body = await request.json();
-  // const {email, password} = LoginSchema.parse(body);
   const validatedFields = LoginSchema.safeParse(body);
+  
   if (!validatedFields.success)
     return NextResponse.json({error: "Invalid Field"}, {status: 401});
+
   const {email, password} = validatedFields.data;
 
   const existingUser = await getUserByEmail(email);
@@ -20,13 +21,14 @@ export const POST = async (request: Request) => {
     );
   }
 
+  
   try {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/client",
+      // redirectTo: "/client",
     });
-    console.log("are you here 2");
+    
     return NextResponse.json({success: "Sign in successfully"}, {status: 200});
   } catch (error) {
     return NextResponse.json(

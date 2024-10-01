@@ -4,6 +4,8 @@ import {getUserByEmail} from "@/data/user";
 import {signIn} from "@/auth";
 
 export const POST = async (request: Request) => {
+
+
   const body = await request.json();
   const validatedFields = LoginSchema.safeParse(body);
   
@@ -11,7 +13,7 @@ export const POST = async (request: Request) => {
     return NextResponse.json({error: "Invalid Field"}, {status: 401});
 
   const {email, password} = validatedFields.data;
-
+  
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
@@ -21,19 +23,14 @@ export const POST = async (request: Request) => {
     );
   }
 
-  
   try {
-    await signIn("credentials", {
-      email,
-      password,
-      // redirectTo: "/client",
+    await signIn("credentials", { email, password,
+      redirectTo: "/",
     });
     
     return NextResponse.json({success: "Sign in successfully"}, {status: 200});
   } catch (error) {
-    return NextResponse.json(
-      {error: "something went wrong again 2"},
-      {status: 400}
-    );
+    console.log("error")
+    return NextResponse.json( {error: "something went wrong again"}, {status: 400} );
   }
 };

@@ -58,7 +58,7 @@ const SignUp = () => {
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="shadcn"
+                    placeholder="Enter your username"
                     {...field}
                   />
                 </FormControl>

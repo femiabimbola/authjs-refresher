@@ -1,4 +1,5 @@
 "use client";
+
 import {useCallback, useEffect, useState} from "react";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
@@ -32,9 +33,10 @@ const Login = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
-    axios.post("/api/login", values).then((response) => console.log(response));
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+    const respond = await axios.post("/api/login", values)
+    console.log(respond)
+    form.reset();
   };
 
   return (

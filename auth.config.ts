@@ -23,16 +23,12 @@ export default {
         if (!validatedFields.success) throw new Error("Wrong data input");
 
         const {email, password} = validatedFields.data;
-        
         const user = await getUserByEmail(email);
 
-        
         if (!user || !user.password) throw new Error("User not found.");
 
         const passwordsMatch = await bcrypt.compare(password, user.password);
         if (!passwordsMatch) throw new Error("Password no match o");
-
-        
         return user;
       },
     }),

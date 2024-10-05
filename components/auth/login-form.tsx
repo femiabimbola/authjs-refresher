@@ -23,8 +23,11 @@ import {
 
 import WordSeparator from "../shared/separator";
 import Social from "@/components/auth/social";
+import { useRouter } from "next/navigation";
+
 
 const Login = () => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -33,10 +36,8 @@ const Login = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
-    const respond = await axios.post("/api/login", values)
-    console.log(respond)
-    form.reset();
+  const onSubmit =  async (values: z.infer<typeof LoginSchema>) => {
+     await axios.post("/api/login", values).then(() =>router.push('/client') )
   };
 
   return (

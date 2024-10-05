@@ -16,10 +16,17 @@ export const config: NextAuthConfig = {
       return token;
     },
     async session({token, session}: any) {
-      console.log(token)
       session.user.id = token.id;
       return token;
     },
+  //   async jwt({user, token}) {
+  //     if (user) token.user = user;
+  //     return token;
+  // },
+  // async session({session, token}: any) {
+  //     session.user = token.user;
+  //     return session;
+  // },
   }, 
   session: {strategy: "jwt"},
   adapter: PrismaAdapter(db),
